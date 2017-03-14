@@ -1,0 +1,56 @@
+---
+title: "How to Mangrove ... Summary!"
+author: "Bart Huntley"
+date: "14 March 2017"
+output: html_document
+---
+
+###Introduction
+Located near this "How to" are 3 mangrove metric summarising functions. Their 
+names are:
+
+* **Mangrove Extent Summaries.R**
+* **Mangrove Change Summaries.R**
+* **Mangrove Trend Summaries.R**
+    
+These have been written to produce "pivot-table"-like summaries from the attribute
+tables of shapefiles. Make sure you choose the right one for your analysis as they
+will not work on an incorrect data input.
+
+###What do I do?
+All of them work similarly. When you open them up they will look like the example
+below (this is the **Mangrove Extent Summaries.R**)
+
+```{r, eval=FALSE}
+# source functions and set environment
+source("Z:/DOCUMENTATION/BART/R/R_DEV/MangroveSummaries/Mangrove Helper Functions.R")
+Sys.setenv("R_ZIPCMD" = "C:/Rtools/bin/zip.exe")
+
+# user inputs
+dpath <- "path to\\extent shapefiles"#character string, double backslash
+wpath <- "path to\\where output goes"#character string, double backslash
+name <- "name of workbook"#character string prepended to "-extent-summaries-date"
+
+# run function
+extent_summary(dpath, wpath, name)
+```
+
+You will need to change the "user input" section. All inputs are character strings,
+that is encapsulated with "" and backslashes doubled.
+
+* **dpath** is the file path to the location of your model output shapefiles
+* **wpath** is the file path to your working directory or where you want the
+    output to be saved
+* **name** a name that will be added to the beginning of the name of the 
+    output excel workbook
+
+Once you have entered the user inputs, highlight the whole code block and run. 
+
+Each of the summarising functions has been written to produce "pivot-table"-like
+summaries and will output each individual one (grouped by reporting region), on a 
+separate sheet in a workbook.
+
+###Gotchas?
+If the model outputs for the mangrove analysis change these scripts will more than likely fail. They will be able to handle additional sites or reporting regions but things like changes to the spelling of attribute column names will produce unexpected results.
+
+Please note that at the beginning of each script is a line starting with "source". This line sources another script with all of the minor functions required to make your summary work. Once you run the source line you will note that there are a number of functions loaded into your environment. If you ever need to make tweaks to any of the minor functions then you can access the code here but bear in mind any changes you make will be local only. If this makes no sense to you and you need something altered just let me know.
